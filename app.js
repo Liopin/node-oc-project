@@ -1,7 +1,16 @@
 const express = require('express');
 const bodyParser = require ('body-parser');
+const mongoose = require('mongoose');
+
 
 const app = express();
+
+mongoose.connect('mongodb://localhost:27017/go-fullstack',
+    {userNewUrlParser: true,
+    useUnifiedTopology:true})
+    .then(() => console.log('Connexion réussie'))
+    .catch(() => console.log('Connexion échouée'));
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
